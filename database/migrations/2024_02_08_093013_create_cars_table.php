@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
             $table->string('name', 20);
-            $table->integer('amount');
+            $table->integer('quantity');
             $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('color_id');
             $table->foreign('type_id')->references('id')->on('types');

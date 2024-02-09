@@ -9,8 +9,8 @@ class CarController extends Controller
 {
     public function getCars()
     {
-        $cars = DB::table('cars')->get();
-        return response()->json($cars);
+        $cars = Car::all();
+    return response()->json($cars);
     }
 
     public function getOneCar(Request $request)
@@ -22,7 +22,9 @@ class CarController extends Controller
 
     public function addCar(Request $request)
     {
-        // Implement adding a new car to the database
+        $carData = $request->only(['name', 'quantity', 'type_id', 'color_id']);
+        DB::table('cars')->insert($carData);
+        return response()->json(['message' => 'Car added successfully']);
     }
 
     public function modifyCar(Request $request)
